@@ -36,8 +36,32 @@ defmodule DayOne do
     end
 
     defmodule PartTwo do
-        def solve(input) do 
-            0
+
+        def solve({[],[]}, total) do
+            total
+        end
+
+        def solve({[x],[y]},total) do
+            total + DayOne.compare(x,y)
+        end
+        def solve({[x|xs],[y|ys]}, total) do
+            solve({xs,ys},total+DayOne.compare(x,y))
+        end
+
+        def solve(input) do
+            String.split(input,"",trim: true)
+                |> Enum.map(&(String.to_integer(&1)))
+                |> swap_input
+                |> solve(0)
+                |> (&(&1*2)).()
+        end
+
+        defp swap_input([]) do
+            {[],[]}
+        end
+        defp swap_input(input) do
+            [first, second] = Enum.chunk_every(input,(round(length(input)/2)))
+            {first, second}
         end
     end
 end
