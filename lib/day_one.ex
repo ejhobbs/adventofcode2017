@@ -7,10 +7,15 @@ defmodule DayOne do
         total
     end
 
-    def solve([x|xs],total) do
-        [next | _rest] = xs
-        solve(xs, total + compare(x,next))
+    def solve([x,y],total) do
+        total + compare(x,y)
     end
+
+    def solve([x,y|xs],total) do
+        solve([y|xs], total + compare(x,y))
+    end
+
+
 
     def solve(input) do
         input = String.split(input,"",trim: true)
@@ -26,7 +31,7 @@ defmodule DayOne do
         a
     end
 
-    defp compare(a,b) do
+    defp compare(_,_) do
         0
     end
 end
