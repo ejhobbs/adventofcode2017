@@ -1,18 +1,12 @@
 defmodule Adventofcode2017 do
-  @moduledoc """
-  Documentation for Adventofcode2017.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Adventofcode2017.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def solve(day,year,mod,:first) do
+    {:ok, input} = AdventOfCodeHelper.get_input(year,day)
+    mod.solve(input)
+      |> IO.write
+  end
+  def solve(day,year,mod,:second) do
+    {:ok, input} = AdventOfCodeHelper.get_input(year,day)
+    mod.solve2(input)
+      |> IO.write
   end
 end
